@@ -10,7 +10,7 @@
 <body>
     <nav class="m-3" style="display: flex; justify-content: space-between;">
         <h3>Kanban Board</h3>
-        <div>
+        <div id="navbar-main">
             <button type="button" class="btn btn-primary">Add Task</button>
             <button type="button" class="btn btn-danger" id="logout-btn">Logout</button>
         </div>
@@ -30,10 +30,24 @@
                   <label for="password" class="form-label">Password</label>
                   <input type="password" class="form-control" id="password">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3" id="form-login-button">
                     <button type="submit" class="btn btn-primary" id="login-btn">Login</button>
                 </div>
-                <div class="g-signin2 fadeIn fourth" data-onsuccess="onSignIn"></div>
+                <div class="mb-3" id="form-register-button">
+                    <button type="submit" class="btn btn-primary" id="register-btn">Register</button>
+                </div>
+                <div class="mb-3" id="change-form-signup">
+                    <p>Create an account?</p>
+                    <button id="btn-sign-up" class="btn btn-secondary">Sign up</button>
+                </div>
+                <div class="mb-3" id="change-form-login">
+                    <p>Already have an account?</p>
+                    <button id="btn-login" class="btn btn-secondary">Login</button>
+                </div>
+                <div>
+                    <p>Or you can sign in using google</p>
+                    <div class="g-signin2 fadeIn fourth" data-onsuccess="onSignIn"></div>
+                </div>
             </form>
         </div>
     </div>
