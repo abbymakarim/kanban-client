@@ -8,9 +8,19 @@
     <title>Kanban</title>
 </head>
 <body>
+    <nav class="m-3" style="display: flex; justify-content: space-between;">
+        <h3>Kanban Board</h3>
+        <div>
+            <button type="button" class="btn btn-primary">Add Task</button>
+            <button type="button" class="btn btn-danger" id="logout-btn">Logout</button>
+        </div>
+    </nav>
+    <!--  Login Page  -->
     <div id="login-page">
-        <div id="login-form" style="margin: 20px;">
-            <form>
+        <!--  Login Form  -->
+        <div id="login-form" style="margin: 20px; padding-left: 25vh; padding-right: 25vh;">
+            <form class="border border-5" style="padding: 20px;">
+                <div id="login-error"></div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email address</label>
                   <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
@@ -20,30 +30,22 @@
                   <label for="password" class="form-label">Password</label>
                   <input type="password" class="form-control" id="password">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <div class="g-signin2 fadeIn fourth" style="padding-left: 4cm; padding-bottom: 0.5cm;" data-onsuccess="onSignIn"></div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" id="login-btn">Login</button>
+                </div>
+                <div class="g-signin2 fadeIn fourth" data-onsuccess="onSignIn"></div>
             </form>
         </div>
     </div>
-    <div id="main-page">
-        <div>
-            <div id="topbar">
-                <h3>Kanban Board</h3>
-                <button type="button" class="btn btn-primary">Add Task</button>
-            </div>
-            <div id="kanban-content" style="display: flex; justify-content: space-around;">
-                <div style="display: flex; flex-direction: row;">
-                    <h3>Back-Log</h3>
-                </div>
-                <div style="display: flex; flex-direction: row;">
-                    <h3>To-Do</h3>
-                </div>
-                <div style="display: flex; flex-direction: row;">
-                    <h3>Doing</h3>
-                </div>
-                <div style="display: flex; flex-direction: row;">
-                    <h3>Done</h3>
-                </div>
+
+    <!--  Main Page  -->
+    <div id="main-page" style="height: 100vh; overflow: hidden;">
+        <div class="container">
+            <div class="row"  style="flex-direction: row; justify-content: space-evenly;">
+              <div class="col border bg-light" style="margin: 10px;">Back-log</div>
+              <div class="col border bg-light" style="margin: 10px;">To-Do</div>
+              <div class="col border bg-light" style="margin: 10px;">Doing</div>
+              <div class="col border bg-light" style="margin: 10px;">Done</div>
             </div>
         </div>
     </div>
