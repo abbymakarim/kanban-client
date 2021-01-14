@@ -282,7 +282,7 @@ const app = new Vue({
                 })
                 .then(response => {
                     localStorage.setItem("access_token", response.data.access_token)
-                    this.page = "main page"
+                    this.check()
                 })
                 .catch(err => {
                     console.log(err.response)
@@ -337,8 +337,24 @@ const app = new Vue({
                 console.log(error.response)
             })
         },
+        changeStatus(category, id){
+            axios({
+                method : "PATCH",
+                url : this.server+'/task'+`/${id}`,
+                headers : {
+                    access_token : localStorage.access_token
+                },
+                data : {
+                    category : category
+                }
+            })
+            .then(() => {
+                this.check()
+            }).catch(error => {
+                console.log(error.response)
+            })
+        },
         deleteTask(id){
-            console.log(id)
             axios({
                 method : "DELETE",
                 url : this.server+'/task'+`/${id}`,
