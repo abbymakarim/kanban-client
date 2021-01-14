@@ -1,0 +1,30 @@
+<template>
+    <div>
+        <nav class="m-4" style="display: flex; justify-content: space-between;">
+            <h3>Kanban Board</h3>
+            <div id="navbar-main">
+                <button type="button" class="btn btn-primary" v-on:click="addTask">Add Task</button>
+                <button type="button" class="btn btn-danger" v-on:click.prevent="logout">Logout</button>
+            </div>
+        </nav>
+    </div>
+</template>
+
+<script>
+export default {
+    name : "NavBar",
+    methods : {
+        logout(){
+            localStorage.clear()
+            this.$emit("changePage", "login")
+        },
+        addTask(){
+            this.$emit("changePage", "add task")
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>
