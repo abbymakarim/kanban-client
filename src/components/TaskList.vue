@@ -12,8 +12,8 @@
                         </div> 
                         Created by : {{ i.User.email }}
                         <div>
-                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            <button type="button" class="btn btn-success btn-sm">To Do</button>
+                            <button v-on:click="deleteTask(i.id)" type="button" class="btn btn-danger btn-sm">Delete</button>
+                            <button v-on:click="changeStatus('To-Do', i.id)" type="button" class="btn btn-success btn-sm">To Do</button>
                         </div>
                     </div>    
                 </div>
@@ -27,9 +27,9 @@
                         </div> 
                              Created by : {{ i.User.email }}
                         <div>
-                            <button type="button" class="btn btn-warning btn-sm">Back-Log</button>
-                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            <button type="button" class="btn btn-success btn-sm">Doing</button>
+                            <button v-on:click="changeStatus('Back-Log', i.id)" type="button" class="btn btn-warning btn-sm">Back-Log</button>
+                            <button v-on:click="deleteTask(i.id)" type="button" class="btn btn-danger btn-sm">Delete</button>
+                            <button v-on:click="changeStatus('Doing', i.id)" type="button" class="btn btn-success btn-sm">Doing</button>
                         </div>
                     </div>
                 </div>
@@ -43,9 +43,9 @@
                         </div> 
                             Created by : {{ i.User.email }}
                         <div>
-                            <button type="button" class="btn btn-warning btn-sm">To Do</button>
-                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            <button type="button" class="btn btn-success btn-sm">Done</button>
+                            <button v-on:click="changeStatus('To-Do', i.id)" type="button" class="btn btn-warning btn-sm">To Do</button>
+                            <button v-on:click="deleteTask(i.id)" type="button" class="btn btn-danger btn-sm">Delete</button>
+                            <button v-on:click="changeStatus('Done', i.id)" type="button" class="btn btn-success btn-sm">Done</button>
                         </div>
                     </div>
                 </div>
@@ -59,8 +59,8 @@
                         </div> 
                             Created by : {{ i.User.email }}
                         <div>
-                            <button  type="button" class="btn btn-warning btn-sm">Doing</button>
-                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            <button v-on:click="changeStatus('Doing', i.id)" type="button" class="btn btn-warning btn-sm">Doing</button>
+                            <button v-on:click="deleteTask(i.id)" type="button" class="btn btn-danger btn-sm">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -73,6 +73,14 @@
 export default {
     name : "TaskList",
     props : ['tasks'],
+    methods : {
+        changeStatus(category, id){
+            this.$emit("changeStatus", category, id)
+        },
+        deleteTask(id){
+            this.$emit("deleteTask", id)
+        }
+    }, 
     computed : {
         backlog(){
             return this.tasks.filter(task => task.category === 'Back-Log')

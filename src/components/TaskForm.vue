@@ -1,6 +1,6 @@
 <template>
     <div class="container border border-5">
-        <form v-on:submit.prevent="task" class="mb-3">
+        <form v-on:submit.prevent="addTask" class="mb-3">
             <label for="task" class="form-label">Title</label>
             <input v-model="title" type="input" class="form-control mb-3" id="task">
             <button type="submit" class="btn btn-primary">Add Task</button>
@@ -18,25 +18,8 @@ export default {
         title : ''
     },
     methods : {
-        task(){
-            axios({
-                method : "POST",
-                url : this.server+'/task',
-                data : {
-                    title : this.title
-                },
-                headers : {
-                    access_token : localStorage.access_token
-                }
-            })
-            .then(response => {
-                console.log(response)
-                this.$emit("changePage", "main page")
-                this.$emit("getTasks")
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        addTask(){
+            this.$emit("addTask", this.title)
         }
     }
 }

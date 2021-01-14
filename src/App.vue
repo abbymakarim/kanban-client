@@ -19,6 +19,9 @@
             v-bind:server="server"
             v-on:changePage="changePage"
             v-on:getTasks="getTasks"
+            v-on:addTask="addTask"
+            v-on:changeStatus="changeStatus"
+            v-on:deleteTask="deleteTask"
         >
         </MainPage>
     </div>    
@@ -93,6 +96,58 @@ export default {
             })
             .catch(err => {
                 console.log(err.response)
+            })
+        },
+        addTask(title){
+            axios({
+                method : "POST",
+                url : this.server+'/task',
+                data : {
+                    title
+                },
+                headers : {
+                    access_token : localStorage.access_token
+                }
+            })
+            .then(response => {
+                this.changePage('main page')
+                this.getTasks()
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },
+        changeStatus(category, id){
+            axios({
+                method : "PATCH",
+                url : this.server+'/task'+`/${id}`,
+                data : {
+                   category
+                },
+                headers : {
+                    access_token : localStorage.access_token
+                } 
+            })
+            .then(response => {
+                this.getTasks()
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },
+        deleteTask(id){
+            axios({
+                method : "DELETE",
+                url : this.server+'/task'+`/${id}`,
+                headers : {
+                    access_token : localStorage.access_token
+                }
+            })
+            .then(response => {
+                this.getTasks()
+            })
+            .catch(err => {
+                console.log(err)
             })
         },
         changePage(page){
