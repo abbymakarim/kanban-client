@@ -245,15 +245,28 @@ const app = new Vue({
     data : {
         email : '',
         password : '',
+        task : '',
+        tasks : [],
         page : "login",
         server : "http://localhost:3000"
     },
     methods : {
+        check(){
+            if(localStorage.access_token){
+                this.page = 'main page'
+                this.getTask()
+            } else {
+                this.page = 'login'
+            }
+        },
         logout: function(){
             localStorage.clear()
             this.page = "login"
             this.email = ''
             this.password = ''
+        },
+        add(){
+            this.page = "add"
         },
         switchRegister: function(){
             this.page = "register"
@@ -288,11 +301,79 @@ const app = new Vue({
                     console.log(err.response)
                 })
             }
+        },
+        addTask(){
+            axios({
+                method : "POST",
+                url : this.server+'/task',
+                headers : {
+                    access_token : localStorage.access_token
+                },
+                data : {
+                    title : this.task
+                }
+            })
+            .then(response => {
+                console.log(response)
+                this.check()
+                this.task = ''
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        },
+        getTask(){
+            axios({
+                method : "GET",
+                url : this.server+'/task',
+                headers : {
+                    access_token : localStorage.access_token
+                }
+            })
+            .then(response => {
+                this.tasks = response.data
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
+        },
+        deleteTask(id){
+            console.log(id)
+            axios({
+                method : "DELETE",
+                url : this.server+'/task'+`/${id}`,
+                headers : {
+                    access_token : localStorage.access_token
+                }
+            })
+            .then(() => {
+                this.check()
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
         }
     },
     created(){
         if(localStorage.access_token){
             this.page = "main page"
-        } 
+            this.getTask()
+        } else {
+            this.page = 'login'
+        }
+    },
+    computed : {
+        backlog(){
+            return this.tasks.filter(task => task.category === 'Back-Log')
+        },
+        todo(){
+            return this.tasks.filter(task => task.category === 'To-Do')
+        },
+        doing(){
+            return this.tasks.filter(task => task.category === 'Doing')
+        },
+        done(){
+            return this.tasks.filter(task => task.category === 'Done')
+        }
     }
 })
