@@ -90,7 +90,6 @@ export default {
             })
         },
         loginGoogle(id_token){
-            console.log('massoooook')
             axios({
                 method : "POST",
                 url : this.server+'/loginGoogle',

@@ -64,6 +64,9 @@ export default {
                 width: 250,
                 height: 50,
                 longtitle: true
+            },
+            params : {
+                client_id: '1061793780278-4kdgnf5j826o1luqp3p4vm04umnk2999.apps.googleusercontent.com'
             }
         }
     },
@@ -92,6 +95,9 @@ export default {
         onSuccess(user){
             const id_token = user.Bc.id_token
             this.$emit("loginGoogle", id_token)
+        },
+        onFailure(err){
+            console.log(err)
         }
     }
 }
