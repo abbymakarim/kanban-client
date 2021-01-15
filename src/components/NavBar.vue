@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <nav class="m-4" style="display: flex; justify-content: space-between;">
+    <div class="m-4">
+        <nav class="m-3" style="display: flex; justify-content: space-between;">
             <h3>Kanban Board</h3>
             <div v-if="page === 'main page'" id="navbar-main">
                 <button type="button" class="btn btn-primary" v-on:click="addTask">Add Task</button>

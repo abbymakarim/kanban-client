@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" >
         <!-- NavBar -->
         <NavBar
             v-bind:page="page"
@@ -46,7 +46,7 @@ export default {
             page : "login",
             task : [],
             tasks : [],
-            server : "http://localhost:3000"
+            server : "https://kanban-board-server.herokuapp.com"
         }
     },
     components : {

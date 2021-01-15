@@ -1,15 +1,14 @@
 <template>
-    <div class="container fs-6" style="color: black; height: 100vh; justify-content: center">
-        <h3>Welcome</h3>
+    <div class="container fs-6" style="color: black; height: 100vh; justify-content: center; padding: 0px;">
         <!-- Content -->
-        <div class="container" style="display: flex; flex-direction: row; align-items: flex-start;">
+        <div class="container" style="display: flex; flex-direction: row; align-items: flex-start; padding: 0px">
             <!-- Card/Isi -->
-            <div class="container border bg-light" style="height: 50px; padding: 10px; display: flex; flex-direction: column;  height: auto;" id="Back-Log">
+            <div class="container border border-5 mx-1 rounded" style="height: 50px; padding: 10px; display: flex; flex-direction: column;  height: auto; background-color: rgb(210,105,30);">
                 Back-log
-                <div class="container border bg-light">
-                    <div v-for="i in backlog" :key="i.id" >
+                <div class="border bg-light rounded">
+                    <div class="border p-1" v-for="i in backlog" :key="i.id" >
                         <div>
-                            title : {{ i.title }}
+                            Title : {{ i.title }}
                         </div> 
                         <div>
                             <button v-on:click="getTask(i.id)" class="btn btn-secondary btn-sm">Edit</button>
@@ -22,15 +21,15 @@
                     </div>    
                 </div>
             </div>
-            <div class="container border bg-light" style="height: 50px; padding: 10px; display: flex; flex-direction: column; height: auto;" id="To-Do">
+            <div class="container border border-5 rounded mx-1" style="height: 50px; padding: 10px; display: flex; flex-direction: column; height: auto; background-color: rgb(102,204,0);">
                 To-Do
-                <div class="container border bg-light">
-                    <div v-for="i in todo" :key="i.id">
+                <div class="border bg-light rounded">
+                    <div class="border p-1" v-for="i in todo" :key="i.id">
                         <div>
-                            title : {{ i.title }}
+                            Title : {{ i.title }}
                         </div> 
                         <div>
-                            <button class="btn btn-secondary btn-sm">Edit</button>
+                            <button v-on:click="getTask(i.id)" class="btn btn-secondary btn-sm">Edit</button>
                         </div>
                             Created by : {{ i.User.email }}
                         <div>
@@ -41,15 +40,15 @@
                     </div>
                 </div>
             </div>
-            <div class="container border bg-light" style="height: 50px; padding: 10px; display: flex; flex-direction: column; height: auto;" id="Doing">
+            <div class="container border border-5 rounded mx-1" style="height: 50px; padding: 10px; display: flex; flex-direction: column; height: auto; background-color: rgb(102,102,255);">
                 Doing
-                <div class="container border bg-light">
-                    <div v-for="i in doing" :key="i.id">
+                <div class="border bg-light rounded">
+                    <div class="border p-1" v-for="i in doing" :key="i.id">
                         <div>
                             title : {{ i.title }}
                         </div> 
                         <div>
-                            <button class="btn btn-secondary btn-sm">Edit</button>
+                            <button v-on:click="getTask(i.id)" class="btn btn-secondary btn-sm">Edit</button>
                         </div>
                             Created by : {{ i.User.email }}
                         <div>
@@ -60,15 +59,15 @@
                     </div>
                 </div>
             </div>
-            <div class="container border bg-light" style="height: 50px; padding: 10px; display: flex; flex-direction: column; height: auto;" id="Done">
+            <div class="container border border-5 rounded mx-1" style="height: 50px; padding: 10px; display: flex; flex-direction: column; height: auto; background-color: rgb(255,153,51);">
                 Done
-                <div class="container border bg-light">
-                    <div v-for="i in done" :key="i.id">
+                <div class="border bg-light rounded">
+                    <div class="border p-1" v-for="i in done" :key="i.id">
                         <div>
-                            title : {{ i.title }}
+                            Title : {{ i.title }}
                         </div> 
                         <div>
-                            <button class="btn btn-secondary btn-sm">Edit</button>
+                            <button v-on:click="getTask(i.id)" class="btn btn-secondary btn-sm">Edit</button>
                         </div>
                             Created by : {{ i.User.email }}
                         <div>

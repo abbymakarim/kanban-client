@@ -1,5 +1,5 @@
 <template>
-    <div class="container border border-5">
+    <div class="container border border-5" >
         <form v-on:submit.prevent="addTask" class="mb-3">
             <label for="task" class="form-label">Title</label>
             <input v-model="title" type="input" class="form-control mb-3" id="task">

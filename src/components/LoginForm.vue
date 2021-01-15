@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="page === 'login'" id="login-form" class="m-5">
+        <div v-if="page === 'login'" id="login-form" style="margin: 20px; padding-left: 25vh; padding-right: 25vh;">
             <form v-on:submit.prevent="login" class="border border-5" style="padding: 20px;">
                 <div id="login-error"></div>
                 <div class="mb-3">
@@ -41,7 +41,7 @@
                     <button type="submit" class="btn btn-primary" id="register-btn">Register</button>
                 </div>
             </form>
-            <div class="mb-3" id="change-form-login">
+            <div class="m-3" id="change-form-login">
                 <p>Already have an account?</p>
                 <button v-on:click="changePage('login')" id="btn-login" class="btn btn-secondary">Login</button>
             </div>
