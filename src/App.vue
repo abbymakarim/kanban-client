@@ -7,7 +7,6 @@
         >
         </NavBar>
         <LoginForm 
-            v-bind:errors="errors"
             v-bind:page="page" 
             v-bind:server="server"
             v-on:changePage="changePage"
@@ -20,11 +19,14 @@
             v-bind:page="page"  
             v-bind:tasks="tasks"
             v-bind:server="server"
+            v-bind:task="task"
             v-on:changePage="changePage"
+            v-on:getTask="getTask"
             v-on:getTasks="getTasks"
             v-on:addTask="addTask"
             v-on:changeStatus="changeStatus"
             v-on:deleteTask="deleteTask"
+            v-on:editTask="editTask"
         >
         </MainPage>
     </div>    
@@ -42,8 +44,8 @@ export default {
     data() {
         return {
             page : "login",
+            task : [],
             tasks : [],
-            errors : [],
             server : "http://localhost:3000"
         }
     },
@@ -157,6 +159,41 @@ export default {
                 Swal.fire(err.response.data.message)
             })
         },
+        getTask(id){
+            axios({
+                method : "GET",
+                url : this.server+'/task'+`/${id}`,
+                headers : {
+                    access_token : localStorage.access_token
+                }
+            })
+            .then(response => {
+                this.task = response.data
+                this.changePage('edit task')
+            })
+            .catch(err => {
+                Swal.fire('Do Not Have Access')
+            })
+        },
+        editTask(title, id){
+            axios({
+                method : "PUT",
+                url : this.server+'/task'+`/${id}`,
+                headers : {
+                    access_token : localStorage.access_token
+                },
+                data : {
+                    title
+                }
+            })
+            .then(response => {
+                this.changePage('main page')
+                this.getTasks()
+            })
+            .catch(err =>{
+                Swal.fire(err.response.data.message[0])
+            })
+        },
         deleteTask(id){
             axios({
                 method : "DELETE",
@@ -183,9 +220,6 @@ export default {
         } else {
             this.page = "login"
         } 
-    },
-    mounted(){
-        console.log(gapi, "ini gapi")
     }
 }
 </script>

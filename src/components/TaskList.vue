@@ -11,7 +11,10 @@
                         <div>
                             title : {{ i.title }}
                         </div> 
-                        Created by : {{ i.User.email }}
+                        <div>
+                            <button v-on:click="getTask(i.id)" class="btn btn-secondary btn-sm">Edit</button>
+                        </div>
+                            Created by : {{ i.User.email }}
                         <div>
                             <button v-on:click="deleteTask(i.id)" type="button" class="btn btn-danger btn-sm">Delete</button>
                             <button v-on:click="changeStatus('To-Do', i.id)" type="button" class="btn btn-success btn-sm">To Do</button>
@@ -26,7 +29,10 @@
                         <div>
                             title : {{ i.title }}
                         </div> 
-                             Created by : {{ i.User.email }}
+                        <div>
+                            <button class="btn btn-secondary btn-sm">Edit</button>
+                        </div>
+                            Created by : {{ i.User.email }}
                         <div>
                             <button v-on:click="changeStatus('Back-Log', i.id)" type="button" class="btn btn-warning btn-sm">Back-Log</button>
                             <button v-on:click="deleteTask(i.id)" type="button" class="btn btn-danger btn-sm">Delete</button>
@@ -42,6 +48,9 @@
                         <div>
                             title : {{ i.title }}
                         </div> 
+                        <div>
+                            <button class="btn btn-secondary btn-sm">Edit</button>
+                        </div>
                             Created by : {{ i.User.email }}
                         <div>
                             <button v-on:click="changeStatus('To-Do', i.id)" type="button" class="btn btn-warning btn-sm">To Do</button>
@@ -58,6 +67,9 @@
                         <div>
                             title : {{ i.title }}
                         </div> 
+                        <div>
+                            <button class="btn btn-secondary btn-sm">Edit</button>
+                        </div>
                             Created by : {{ i.User.email }}
                         <div>
                             <button v-on:click="changeStatus('Doing', i.id)" type="button" class="btn btn-warning btn-sm">Doing</button>
@@ -80,6 +92,9 @@ export default {
         },
         deleteTask(id){
             this.$emit("deleteTask", id)
+        },
+        getTask(id){
+            this.$emit("getTask", id)
         }
     }, 
     computed : {
