@@ -4,7 +4,9 @@
         <div class="container" style="display: flex; flex-direction: row; align-items: flex-start; padding: 0px">
             <!-- Card/Isi -->
             <div class="container border border-5 mx-1 rounded" style="height: 50px; padding: 10px; display: flex; flex-direction: column;  height: auto; background-color: rgb(210,105,30);">
-                Back-log
+                <div class="border rounded text-center">
+                    Back-log
+                </div>
                 <div class="border bg-light rounded">
                     <div class="border p-1" v-for="i in backlog" :key="i.id" >
                         <div>
@@ -22,7 +24,9 @@
                 </div>
             </div>
             <div class="container border border-5 rounded mx-1" style="height: 50px; padding: 10px; display: flex; flex-direction: column; height: auto; background-color: rgb(102,204,0);">
-                To-Do
+                <div class="border rounded text-center">
+                    To-Do
+                </div>
                 <div class="border bg-light rounded">
                     <div class="border p-1" v-for="i in todo" :key="i.id">
                         <div>
@@ -41,7 +45,9 @@
                 </div>
             </div>
             <div class="container border border-5 rounded mx-1" style="height: 50px; padding: 10px; display: flex; flex-direction: column; height: auto; background-color: rgb(102,102,255);">
-                Doing
+                <div class="border rounded text-center">
+                    Doing
+                </div>
                 <div class="border bg-light rounded">
                     <div class="border p-1" v-for="i in doing" :key="i.id">
                         <div>
@@ -60,7 +66,9 @@
                 </div>
             </div>
             <div class="container border border-5 rounded mx-1" style="height: 50px; padding: 10px; display: flex; flex-direction: column; height: auto; background-color: rgb(255,153,51);">
-                Done
+                <div class="border rounded text-center">
+                    Done
+                </div>
                 <div class="border bg-light rounded">
                     <div class="border p-1" v-for="i in done" :key="i.id">
                         <div>
