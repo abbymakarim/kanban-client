@@ -17,7 +17,7 @@
                 </div>
                 <div>
                     <p>Or you can sign in using google</p>
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
                 </div>
             </form>
             <div class="m-3" id="change-form-signup">
@@ -51,14 +51,29 @@
 
 <script>
 import axios from "axios"
+ import GoogleLogin from 'vue-google-login';
+
 export default {
     name : "LoginForm",
-    props : ['page', 'server'],
+    props : ['page', 'server', 'errors'],
     data(){
         return {
             email : '',
-            password : ''
+            password : '',
+            renderParams: {
+                width: 250,
+                height: 50,
+                longtitle: true
+            }
         }
+    },
+    components : {
+        GoogleLogin
+    },
+    mounted(){
+        gapi.signin2.render('google-signin-button', {
+            onsuccess: this.onSignIn
+        })
     },
     methods : {
         login(){
@@ -73,6 +88,10 @@ export default {
             this.$emit("register", this.email, this.password)
             this.email = ''
             this.password = ''
+        },
+        onSuccess(user){
+            const id_token = user.Bc.id_token
+            this.$emit("loginGoogle", id_token)
         }
     }
 }

@@ -2,15 +2,18 @@
     <div id="app">
         <!-- NavBar -->
         <NavBar
+            v-bind:page="page"
             v-on:changePage="changePage"
         >
         </NavBar>
         <LoginForm 
+            v-bind:errors="errors"
             v-bind:page="page" 
             v-bind:server="server"
             v-on:changePage="changePage"
             v-on:login="login"
             v-on:register="register"
+            v-on:loginGoogle="loginGoogle"
         >
         </LoginForm>
         <MainPage 
@@ -40,6 +43,7 @@ export default {
         return {
             page : "login",
             tasks : [],
+            errors : [],
             server : "http://localhost:3000"
         }
     },
@@ -62,7 +66,7 @@ export default {
                 this.changePage('login')
             })
             .catch(err => {
-                console.log(err.response)
+                Swal.fire(err.response.data.message[0])
             })
         },
         login(email, password){
@@ -80,6 +84,24 @@ export default {
                 this.getTasks()
             })
             .catch(err => {
+                Swal.fire(err.response.data.message)
+            })
+        },
+        loginGoogle(id_token){
+            console.log('massoooook')
+            axios({
+                method : "POST",
+                url : this.server+'/loginGoogle',
+                data : {
+                    id_token
+                }
+            })
+            .then(response => {
+                localStorage.setItem('access_token', response.data.access_token)
+                this.changePage('main page')
+                this.getTasks()  
+            })
+            .catch(err => {
                 console.log(err)
             })
         },
@@ -95,7 +117,7 @@ export default {
                 this.tasks = response.data
             })
             .catch(err => {
-                console.log(err.response)
+                Swal.fire(err.response.data.message)
             })
         },
         addTask(title){
@@ -114,7 +136,7 @@ export default {
                 this.getTasks()
             })
             .catch(err => {
-                console.log(err)
+                Swal.fire(err.response.data.message[0])
             })
         },
         changeStatus(category, id){
@@ -132,7 +154,7 @@ export default {
                 this.getTasks()
             })
             .catch(err => {
-                console.log(err)
+                Swal.fire(err.response.data.message)
             })
         },
         deleteTask(id){
@@ -147,7 +169,7 @@ export default {
                 this.getTasks()
             })
             .catch(err => {
-                console.log(err)
+                Swal.fire(err.response.data.message)
             })
         },
         changePage(page){
@@ -161,6 +183,9 @@ export default {
         } else {
             this.page = "login"
         } 
+    },
+    mounted(){
+        console.log(gapi, "ini gapi")
     }
 }
 </script>

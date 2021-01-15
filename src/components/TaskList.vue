@@ -1,5 +1,6 @@
 <template>
     <div class="container fs-6" style="color: black; height: 100vh; justify-content: center">
+        <h3>Welcome</h3>
         <!-- Content -->
         <div class="container" style="display: flex; flex-direction: row; align-items: flex-start;">
             <!-- Card/Isi -->

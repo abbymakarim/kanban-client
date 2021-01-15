@@ -5,7 +5,7 @@
             <input v-model="title" type="input" class="form-control mb-3" id="task">
             <button type="submit" class="btn btn-primary">Add Task</button>
         </form>
-        <button type="button" class="btn btn-primary mb-3">Cancel</button>
+        <button v-on:click.prevent="changePage" type="button" class="btn btn-primary mb-3">Cancel</button>
     </div>
 </template>
 
@@ -20,6 +20,9 @@ export default {
     methods : {
         addTask(){
             this.$emit("addTask", this.title)
+        },
+        changePage(){
+            this.$emit("changePage", "main page")
         }
     }
 }

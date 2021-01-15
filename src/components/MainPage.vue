@@ -28,7 +28,7 @@ export default {
         TaskForm,
         TaskList
     },
-    props : ['tasks', 'page', 'server'],
+    props : ['tasks', 'page'],
     methods : {
         changePage(page){
             this.$emit("changePage", page)
